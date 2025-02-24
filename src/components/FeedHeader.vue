@@ -1,0 +1,9 @@
+<template>
+  <div>
+    <img
+      class="w-full"
+      src="https://trca.ca/app/uploads/2021/09/trca-american-beaver_1A.jpg"
+      alt=""
+    />
+  </div>
+</template>
