@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Post } from '@/types'
+import type { Post, PostForm } from '@/types'
 
 export const usePostsStore = defineStore('posts', () => {
   const posts = ref<Array<Post>>([
@@ -60,9 +60,19 @@ export const usePostsStore = defineStore('posts', () => {
     posts.value.push(post)
   }
 
+  function editPost(payload: { id: number; data: PostForm }) {
+    posts.value = posts.value.map((post) => {
+      if (payload.id === post.id) {
+        return { ...post, description: payload.data.text, imageUrl: payload.data.imageUrl }
+      } else {
+        return post
+      }
+    })
+  }
+
   function deletePost(id: number) {
     posts.value = posts.value.filter((post) => post.id !== id)
   }
 
-  return { posts, addPost, deletePost }
+  return { posts, addPost, editPost, deletePost }
 })

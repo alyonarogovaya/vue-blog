@@ -14,7 +14,13 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="flex gap-2 items-center">
+          <button
+            @click="$emit('editPost', post)"
+            class="p-1 rounded-sm bg-gray-300 border-gray-400 border hover:bg-gray-400 transition"
+          >
+            <EditIcon />
+          </button>
           <button
             @click="openModal"
             class="p-1 rounded-sm bg-gray-300 border-gray-400 border hover:bg-gray-400 transition"
@@ -46,6 +52,7 @@ import ModalComponent from './ui/ModalComponent.vue'
 import ButtonComponent from './ui/ButtonComponent.vue'
 import { ref } from 'vue'
 import { usePostsStore } from '@/stores/posts'
+import EditIcon from './icons/EditIcon.vue'
 
 defineProps<{
   post: Post

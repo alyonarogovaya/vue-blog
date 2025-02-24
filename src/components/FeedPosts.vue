@@ -1,6 +1,11 @@
 <template>
   <ul>
-    <PostComponent v-for="post in sortedPosts" :key="post.id" :post="post" />
+    <PostComponent
+      @edit-post="(post) => $emit('editPost', post)"
+      v-for="feedPost in sortedPosts"
+      :key="feedPost.id"
+      :post="feedPost"
+    />
   </ul>
 </template>
 

@@ -22,13 +22,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import ButtonComponent from './ui/ButtonComponent.vue'
-const emit = defineEmits(['post-submit'])
+import type { Post } from '@/types'
+
+const props = defineProps<{
+  post?: Post
+}>()
+
+const emit = defineEmits(['create-post', 'edit-post'])
 
 const formValues = ref({
   text: '',
-  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/PNG_Test.png',
+  imageUrl: '',
 })
 
 const imageUrlError = computed(() => {
@@ -42,16 +48,21 @@ const textError = computed(() => {
 function submit() {
   if (imageUrlError.value || textError.value) return
 
-  emit('post-submit', formValues.value)
+  if (props.post) {
+    emit('edit-post', {
+      data: formValues.value,
+      id: props.post.id,
+    })
+  } else {
+    emit('create-post', formValues.value)
+  }
 }
 
 function validateUrl() {
   const regex = /(https?:\/\/.*\.(?:png|jpg))/i
   // https://upload.wikimedia.org/wikipedia/commons/6/6a/PNG_Test.png
 
-  if (!formValues.value.imageUrl) {
-    return 'The field is required'
-  } else if (!formValues.value.imageUrl.match(regex)) {
+  if (formValues.value.imageUrl && !formValues.value.imageUrl.match(regex)) {
     return 'The URL is invalid.'
   }
 
@@ -65,9 +76,10 @@ function validateText() {
   return ''
 }
 
-// v-model
-// ref
-// @input/@click/@mouseenter/@enter/@submit
-// function (submit, validate, fetch, etc)
-// computed calculated value
+onMounted(() => {
+  if (props.post) {
+    formValues.value.text = props.post.description
+    formValues.value.imageUrl = props.post.imageUrl || ''
+  }
+})
 </script>

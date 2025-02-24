@@ -1,8 +1,12 @@
 <template>
-  <div class="w-full max-w-3xl bg-blue-50 absolute z-[100] p-8 rounded-sm inset-x-0 mx-auto">
+  <div
+    class="w-full max-w-3xl bg-blue-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] p-8 rounded-sm h-fit"
+  >
     <div class="flex justify-between items-center">
       <h5 v-if="title" class="text-xl mb-4 font-bold">{{ title }}</h5>
-      <button @click="closeModal">Close</button>
+      <button @click="closeModal" class="p-1 mt-[-16px]">
+        <CloseIcon />
+      </button>
     </div>
     <slot />
   </div>
@@ -10,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import CloseIcon from '../icons/CloseIcon.vue'
+
 defineProps<{
   title?: string
 }>()
