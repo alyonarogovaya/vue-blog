@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full max-w-3xl bg-blue-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] p-8 rounded-sm h-fit"
+    class="w-full max-w-3xl bg-blue-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] p-8 rounded-sm h-fit"
   >
     <div class="flex justify-between items-center">
       <h5 v-if="title" class="text-xl mb-4 font-bold">{{ title }}</h5>

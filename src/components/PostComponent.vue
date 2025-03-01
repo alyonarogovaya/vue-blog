@@ -30,6 +30,7 @@
         </div>
       </div>
       <p class="text-gray-900 p-2">{{ post.description }}</p>
+      <img v-if="post.imageUrl" :src="post.imageUrl" alt="" />
     </div>
     <ModalComponent
       @close="closeModal"

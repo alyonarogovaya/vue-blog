@@ -13,11 +13,15 @@
 import PostComponent from './PostComponent.vue'
 
 import { usePostsStore } from '@/stores/posts'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 
 const postsStore = usePostsStore()
 
 const sortedPosts = computed(() => {
   return [...postsStore.posts].sort((a, b) => Number(b.date) - Number(a.date))
+})
+
+onMounted(() => {
+  postsStore.getPosts()
 })
 </script>
