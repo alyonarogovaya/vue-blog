@@ -12,7 +12,7 @@ export const usePostsStore = defineStore('posts', () => {
     posts.value = data
   }
 
-  async function addPost(post: Post) {
+  async function addPost(post: Partial<Post>) {
     await fetch('http://localhost:3000/posts', {
       method: 'POST',
       body: JSON.stringify(post),
@@ -24,7 +24,7 @@ export const usePostsStore = defineStore('posts', () => {
     return getPosts()
   }
 
-  async function editPost(payload: { id: number; data: PostForm }) {
+  async function editPost(payload: { id: string; data: PostForm }) {
     await fetch(`http://localhost:3000/posts/${payload.id}`, {
       method: 'PUT',
       body: JSON.stringify({ description: payload.data.text, imageUrl: payload.data.imageUrl }),
@@ -36,7 +36,7 @@ export const usePostsStore = defineStore('posts', () => {
     return getPosts()
   }
 
-  async function deletePost(id: number) {
+  async function deletePost(id: string) {
     await fetch(`http://localhost:3000/posts/${id}`, {
       method: 'DELETE',
     })

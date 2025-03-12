@@ -51,7 +51,7 @@ function submit() {
   if (props.post) {
     emit('edit-post', {
       data: formValues.value,
-      id: props.post.id,
+      id: props.post._id,
     })
   } else {
     emit('create-post', formValues.value)

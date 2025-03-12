@@ -38,8 +38,6 @@ function closeModal() {
 
 function onPostCreate(data: PostFormType) {
   const newPost = {
-    id: Math.random(),
-    date: Date.now().toString(),
     description: data.text,
     imageUrl: data.imageUrl,
   }
@@ -48,7 +46,7 @@ function onPostCreate(data: PostFormType) {
   closeModal()
 }
 
-function onPostEdit(payload: { id: number; data: PostFormType }) {
+function onPostEdit(payload: { id: string; data: PostFormType }) {
   postsStore.editPost(payload)
   closeModal()
 }

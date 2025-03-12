@@ -39,7 +39,7 @@
     >
       <div class="flex gap-4">
         <ButtonComponent variant="secondary" @click="closeModal">Cancel</ButtonComponent>
-        <ButtonComponent @click="postsStore.deletePost(post.id)">Yes, proceed</ButtonComponent>
+        <ButtonComponent @click="postsStore.deletePost(post._id)">Yes, proceed</ButtonComponent>
       </div>
     </ModalComponent>
   </li>

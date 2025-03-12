@@ -1,5 +1,5 @@
 export type Post = {
-  id: number
+  _id: string
   description: string
   date: string
   imageUrl?: string

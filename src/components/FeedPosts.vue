@@ -3,7 +3,7 @@
     <PostComponent
       @edit-post="(post) => $emit('editPost', post)"
       v-for="feedPost in sortedPosts"
-      :key="feedPost.id"
+      :key="feedPost._id"
       :post="feedPost"
     />
   </ul>
